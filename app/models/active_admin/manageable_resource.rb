@@ -9,7 +9,7 @@ module ActiveAdmin
     end
 
     def call
-      namespace = ::ActiveAdmin.application.default_namespace
+      namespace = ::ActiveAdmin.application.default_namespace || :root
       ::ActiveAdmin.application.namespaces[namespace].resources.inject([]) do |result, resource|
         class_name = resource.controller.resource_class.to_s
         name       = resource.resource_name.name
