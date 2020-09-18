@@ -15,6 +15,8 @@ module ActiveAdmin
         name       = resource.resource_name.name
         actions    = collect_defined_actions(resource)
 
+        next if ["ActiveAdmin::Page", "ActiveAdmin::Comment"].include? class_name
+        
         result += eval_actions(actions).map do |action|
           { class_name: class_name, name: name, action: action }
         end
