@@ -11,7 +11,7 @@ module ActiveAdminRole
             resource_class.where(id: formatted_ids).update_all(role: resource_class.roles[role])
 
             if Rails::VERSION::MAJOR >= 5
-              redirect_back fallback_location: admin_root_url, notice: t("views.admin_user.notice.assigned", role: role)
+              redirect_back fallback_location: root_url, notice: t("views.admin_user.notice.assigned", role: role)
             else
               redirect_to :back, notice: t("views.admin_user.notice.assigned", role: role)
             end
