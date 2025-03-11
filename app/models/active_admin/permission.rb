@@ -44,6 +44,14 @@ module ActiveAdmin
         @indexed_cache = nil
       end
 
+      def ransackable_attributes(auth_object = nil)
+        column_names.reject { |col| %w[encrypted_password provider auth_hash object_id].include? col }
+      end
+
+      def ransackable_associations(auth_object = nil)
+        reflect_on_all_associations.map { |a| a.name.to_s }
+      end
+
       private
 
         def default_state

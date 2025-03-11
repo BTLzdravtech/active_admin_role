@@ -22,6 +22,14 @@ module ActiveAdmin
       def reload
         ActiveAdmin::PermissionReloader.reload
       end
+
+      def ransackable_attributes(auth_object = nil)
+        column_names
+      end
+
+      def ransackable_associations(auth_object = nil)
+        reflect_on_all_associations.map { |a| a.name.to_s }
+      end
     end
   end
 end
